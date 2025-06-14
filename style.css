@@ -19,10 +19,27 @@
   margin-left: 16px;         /* Adds space between the logo and the left edge */
 }
 
-/* This adds space below the navbar so the header text isn't hidden */
+/* Make the header area tall for the background image */
 .header-content {
-  margin-top: 60px;          /* Adds space at the top of the content */
-  text-align: center;        /* Centers the header text */
+  padding-top: 150px;    /* Makes the image area tall */
+  padding-bottom: 120px; /* Space at the bottom */
+  text-align: center;   /* Center the text */
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('img/header-bg.avif');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  width: 100vw;
+  margin-top: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+/* Remove extra space above the header text */
+.header-content h1,
+.header-content p {
+  margin-top: 0; /* No space above the text */
 }
 
 /* On small screens, center the logo */
@@ -33,4 +50,36 @@
   .navbar img {
     margin-left: 0;          /* Remove left margin when centered */
   }
+}
+
+/* Make sure everything uses border-box sizing */
+* {
+  box-sizing: border-box; /* Makes width and padding work together */
+}
+
+body {
+  font-family: 'Trebuchet MS', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+.timeline-cards {
+  padding: 10px;
+  margin: 0;
+}
+
+/* Make images responsive so they don't overflow */
+img {
+  max-width: 100%; /* Image can't be wider than its container */
+  height: auto;    /* Keeps the image's aspect ratio */
+}
+
+/* Optional: Make sure sections and divs don't overflow */
+section, div {
+  max-width: 100%;
+  overflow-x: auto;
 }
