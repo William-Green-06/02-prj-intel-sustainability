@@ -67,11 +67,6 @@ h1 {
   font-size: 36px;
 }
 
-.timeline-cards {
-  padding: 10px;
-  margin: 0;
-}
-
 /* Make images responsive so they don't overflow */
 img {
   max-width: 100%; /* Image can't be wider than its container */
@@ -82,4 +77,67 @@ img {
 section, div {
   max-width: 100%;
   overflow-x: auto;
+}
+
+/* Timeline cards container: horizontal scroll on big screens */
+.timeline-cards {
+  display: flex;              /* Arrange cards in a row */
+  overflow-x: auto;           /* Allow horizontal scrolling */
+  gap: 16px;                  /* Space between cards */
+  padding: 16px 0;            /* Space above and below the cards */
+  align-items: flex-start;    /* Cards align at the top, can grow independently */
+}
+
+/* Each card: fixed width so it doesn't change when text appears */
+.timeline-cards > div {
+  width: 250px;              /* Fixed width for each card */
+  background: #f5f5f5;       /* Light background color */
+  border-radius: 8px;        /* Rounded corners */
+  padding: 16px;             /* Space inside each card */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08); /* Soft shadow */
+  flex-shrink: 0;            /* Prevent cards from shrinking */
+  box-sizing: border-box;    /* Makes padding work as expected */
+  transition: box-shadow 0.2s; /* Optional: smooth shadow on hover */
+}
+
+/* Hide all paragraphs inside timeline cards by default */
+.timeline-cards > div p {
+  display: none; /* Hide the paragraph */
+}
+
+/* Show the paragraph when you hover over the card */
+.timeline-cards > div:hover p {
+  display: block; /* Show the paragraph on hover */
+}
+
+/* Center the header text */
+.header-text {
+  text-align: center; /* Centers the text inside the header */
+}
+
+/* On small screens, stack cards vertically */
+@media (max-width: 600px) {
+  .timeline-cards {
+    flex-direction: column;   /* Stack cards top to bottom */
+    overflow-x: visible;      /* No horizontal scroll */
+    gap: 12px;                /* Less space between cards */
+  }
+  .timeline-cards > div {
+    min-width: 0;             /* Allow cards to shrink to fit */
+    width: 100%;              /* Cards take full width */
+  }
+}
+
+/* Add padding to the left of the first card */
+.timeline-cards > div:first-child {
+  margin-left: 16px; /* Adds space to the left */
+}
+
+/* Add padding to the right of the last card */
+.timeline-cards > div:last-child {
+  margin-right: 16px; /* Adds space to the right */
+}
+
+#helper-text {
+  padding: 10px;
 }
