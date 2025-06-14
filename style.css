@@ -1,1 +1,36 @@
 /* Add your CSS here */
+
+/* This styles the top navigation bar */
+.navbar {
+  background-color: #0071c5; /* Intel blue color */
+  padding: 10px 0;           /* Space above and below the logo */
+  position: fixed;           /* Keeps the bar at the top of the page */
+  width: 100%;               /* Makes the bar stretch across the page */
+  top: 0;                    /* Positions the bar at the very top */
+  left: 0;
+  z-index: 1000;             /* Makes sure the bar stays above other content */
+  text-align: left;        /* Centers the logo inside the bar */
+}
+
+/* This makes the logo image smaller and adds space on the left */
+.navbar img {
+  height: 40px;              /* Sets the logo height */
+  vertical-align: middle;    /* Aligns the logo nicely in the bar */
+  margin-left: 16px;         /* Adds space between the logo and the left edge */
+}
+
+/* This adds space below the navbar so the header text isn't hidden */
+.header-content {
+  margin-top: 60px;          /* Adds space at the top of the content */
+  text-align: center;        /* Centers the header text */
+}
+
+/* On small screens, center the logo */
+@media (max-width: 600px) {
+  .navbar {
+    text-align: center;      /* Center the logo in the navbar */
+  }
+  .navbar img {
+    margin-left: 0;          /* Remove left margin when centered */
+  }
+}
