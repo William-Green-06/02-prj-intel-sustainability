@@ -1,4 +1,16 @@
 /* Add your CSS here */
+/* Add your custom font using @font-face */
+@font-face {
+  font-family: 'IntelOneMono';        /* Give your font a name */
+  src: url('fonts/IntelOneMono-Regular.ttf'); /* Path to your .ttf file */
+  font-weight: normal;                /* Normal weight */
+}
+
+@font-face {
+  font-family: 'IntelOneMono';        /* Give your font a name */
+  src: url('fonts/IntelOneMono-Bold.ttf'); /* Path to your .ttf file */
+  font-weight: bold;                /* Bold weight */
+}
 
 /* This styles the top navigation bar */
 .navbar {
@@ -21,14 +33,11 @@
 
 /* Make the header area tall for the background image */
 .header-content {
+  position: relative;
+  overflow: hidden;  /* Ensures content doesn't overflow */
   padding-top: 150px;    /* Makes the image area tall */
   padding-bottom: 120px; /* Space at the bottom */
   text-align: center;   /* Center the text */
-  background-image: 
-    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-    url('img/header-bg.avif');
-  background-size: cover;
-  background-position: center;
   color: white;
   width: 100vw;
   margin-top: 0;
@@ -36,10 +45,37 @@
   box-sizing: border-box;
 }
 
+.header-content::before {
+  content: "";                                         /* Creates the pseudo-element */
+  position: absolute;                                  /* Position it over the header */
+  top: 0; left: 0; right: 0; bottom: 0;                /* Cover the whole header */
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), /* Dark overlay */
+    url('img/header-bg.avif');                          /* Your background image */
+  background-size: cover;                              /* Cover the area */
+  background-position: center;                         /* Center the image */
+  z-index: 0;                                          /* Place behind the text */
+  transition: transform 0.4s ease;                     /* Smooth zoom effect */
+}
+
+/* When you hover over the header, zoom in the background */
+.header-content:hover::before {
+  transform: scale(1.1);   /* Slightly zoom in the background */
+}
+
+/* Make sure the header text is above the background */
+.header-content > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* Remove extra space above the header text */
 .header-content h1,
 .header-content p {
   margin-top: 0; /* No space above the text */
+  margin-left: 25vw;
+  margin-right: 25vw;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); /* Adds a shadow for better readability */
 }
 
 /* On small screens, center the logo */
@@ -58,7 +94,7 @@
 }
 
 body {
-  font-family: 'Trebuchet MS', sans-serif;
+  font-family: "IntelOneMono", 'Trebuchet MS', sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -79,22 +115,14 @@ section, div {
   overflow-x: auto;
 }
 
-/* Add padding to the left of the first card */
-.timeline-cards > div:first-child {
-  margin-left: 0px; /* Adds space to the left */
-}
-
-/* Add padding to the right of the last card */
-.timeline-cards > div:last-child {
-  margin-right: 0px; /* Adds space to the right */
-}
-
 /* Timeline cards container: horizontal scroll on big screens */
 .timeline-cards {
   display: flex;              /* Arrange cards in a row */
   overflow-x: auto;           /* Allow horizontal scrolling */
   gap: 16px;                  /* Space between cards */
   padding: 16px 0;            /* Space above and below the cards */
+  margin-left: 12px;
+  margin-right: 12px;
   align-items: flex-start;    /* Cards align at the top, can grow independently */
 }
 
@@ -178,8 +206,7 @@ section, div {
 @media (min-width: 601px) {
   .timeline-cards {
     scroll-snap-type: x mandatory; /* Enable horizontal snap */
-    padding-left: 2vw;
-    padding-right: 2vw;
+
   }
   .timeline-cards > div {
     scroll-snap-align: start;      /* Snap each card to the start */
