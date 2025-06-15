@@ -187,6 +187,10 @@ section, div {
 
 /* On small screens, stack cards vertically */
 @media (max-width: 600px) {
+  .header-content h1 {
+    font-size: 1.6em;   /* Make the title smaller */
+    text-align: center; /* Make sure it's centered */
+  }
   .timeline-cards {
     flex-direction: column;   /* Stack cards top to bottom */
     overflow-x: visible;      /* No horizontal scroll */
